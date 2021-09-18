@@ -1,6 +1,6 @@
 ---
 title: "Activity 3"
-author: "Team Name"
+author: "Team B"
 output: github_document
 ---
 
@@ -31,20 +31,21 @@ Create three vectors that contain: 1) the lower case letters, 2) the lower case 
 ```{r}
 lower_case <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
 
-upper_case <- c("A", "B", "C", "D", "E", "F", "G", "H" "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
+upper_case <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
 
-punctuation <- c(".", ",", "!", "?", "'", """, "(", ")", " ", "-", ";", ":")
+punctuation <- c(".", ",", "!", "?", "'", " \" ", "(", ")", " " , "-", ";", ":")
 ```
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
 
 **Response**:
-
+putting , between I and J works.
+adding Backslash before " works.
 
 Make one long vector containing all the symbols.
 
 ```{r}
-my_symbols <- cbind(lower_case, upper_case, punctuation)
+my_symbols <- c(lower_case, upper_case, punctuation)
 ```
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
@@ -55,30 +56,31 @@ Comment on what you noticed about the errors and how you used this information t
 Turn the `my_symbols` vector into a data frame, with the variable name "Symbol".
 
 ```{r}
-my_symbols <- dataframe(my_symbols)
-names(my_symbols) = Symbol
+my_symbols <- data.frame(my_symbols)
+names(my_symbols) = "Symbol"
 ```
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
 
 **Response**:
-
+dataframe has syntax of data.frame
+"symbol" is sorrounded by quotation mark
 
 Find the total number of symbols we have in our data frame.  
 
 ```{r}
-len <- length(my_symbols)
+len <- nrow(my_symbols)
 ```
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
 
 **Response**:
-
+"nrow" is the function to find number of rows. dataframe symbols are in rows.
 
 5. Create a new variable in your dataframe that assigns a number to each symbol.
 
 ```{r}
-my_symbols%Num <- 1:len
+my_symbols$Num <- 1:len
 ```
 
 Comment on what you noticed about the errors and how you used this information to correct the issues.
@@ -112,7 +114,10 @@ Write your own code to complete the steps below.
 4. Square every number.
 
 ```{r}
-
+top_secret <- top_secret + 14
+top_secret <- (top_secret * 18)-257
+top_secret <- exp(top_secret)
+top_secret <- top_secret ^ 2
 ```
 
 **HQ UPDATE:** Headquarters has informed you that at this stage of decoding, there should be 496 numbers in the secret message that are below 17.
@@ -125,7 +130,12 @@ Write your own code to complete the steps below.
 10. Turn your matrix back into a vector.
 
 ```{r}
-
+top_secret <- matrix(top_secret, ncol = 5)
+evens <- seq(from = 2, to = 502, by = 2)
+top_secret[,1] <- top_secret[,1] - evens
+top_secret[18:24,3] <- top_secret[18:24,3] - 100
+top_secret[,4:5] <- top_secret[,4:5] * 2
+top_secret <- c(top_secret)
 ```
 
 **HQ UPDATE:** Headquarters has informed you that at this stage of decoding, all numbers in indices 500 and beyond are below 100.
@@ -135,7 +145,9 @@ Write your own code to complete the steps below.
 13. Replace all instances of the number 39 with 20.
 
 ```{r}
-
+top_secret[38:465] <- sqrt(top_secret[38:465])
+top_secret <- round(top_secret)
+top_secret[top_secret == 39] <- 20
 ```
 
 **HQ UPDATE:** Headquarters has informed you that your final message should have 421 even numbers.
